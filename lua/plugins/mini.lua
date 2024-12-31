@@ -1,1 +1,9 @@
-/nix/store/8f07v53i4r60cx71a8wkh1bdzr9l1x59-home-manager-files/.config/nvim/lua/plugins/mini.lua
+return {
+    {
+        'echasnovski/mini.nvim',
+        config = function()
+            local statusline = require 'mini.statusline'
+            statusline.setup { use_icons = true }
+        end
+    }
+}
