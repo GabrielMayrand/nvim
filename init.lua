@@ -4,7 +4,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.opt.clipboard="unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 -- UI
 -- font
 vim.g.have_nerd_font = true
@@ -23,7 +23,7 @@ vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 0
--- search 
+-- search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- scroll
@@ -31,11 +31,11 @@ vim.opt.scrolloff = 5
 
 -- VIM API
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking text',
-    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 
