@@ -1,7 +1,8 @@
 # nvim
-# Telescope.nvim FZF Extension Error Resolution
+# Potential errors resolutions
 
-## Problem Description
+## FZF : 
+### Problem Description
 
 If you encounter the following error when running Telescope with the `fzf` extension:
 
@@ -12,11 +13,9 @@ Error: 'fzf' extension doesn't exist or isn't installed: .local/share/nvim/lazy/
 
 This error typically occurs because the `telescope-fzf-native.nvim` extension's native dependencies (`libfzf.so`) are not built or are missing.
 
-## Steps to Resolve
-
-1. Navigate to the `telescope-fzf-native.nvim` plugin directory:
-    ```bash
-    cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim
-    make clean && make
-    ```
+### Steps to Resolve
+```bash
+cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim
+make clean && make
+```
 
