@@ -53,6 +53,7 @@ return {
           cwd = vim.fn.stdpath("config")
         }
       end, { desc = 'Telescope find neovim files' })
+      require "config.telescope.multigrep".setup()
     end
   }
 }
