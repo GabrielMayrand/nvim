@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      'saghen/blink.cmp',
+      -- 'saghen/blink.cmp',
       {
         "folke/lazydev.nvim",
         opts = {
@@ -13,10 +13,13 @@ return {
       },
     },
     config = function()
+      -- COMPLETION
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- LSP
-      require("lspconfig").lua_ls.setup { capabilites = capabilities }
+      require("lspconfig").lua_ls.setup {
+        capabilites = capabilities
+      }
 
       -- FORMATTING
       vim.api.nvim_create_autocmd('LspAttach', {
