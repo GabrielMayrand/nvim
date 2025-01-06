@@ -15,10 +15,24 @@ return {
     config = function()
       -- COMPLETION
       local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local pid = vim.fn.getpid()
 
       -- LSP
       require("lspconfig").lua_ls.setup {
         capabilites = capabilities
+      }
+
+      require("lspconfig").omnisharp.setup {
+        capabilities = capabilities,
+        cmd = {
+          "/nix/store/adpqa8140zcsnv3ngbvazqlxyn83c12c-omnisharp-roslyn-1.39.12/bin/OmniSharp",
+          "--languageserver",
+          "--hostPID",
+          tostring(pid),
+        },
+        Sdk = {
+          IncludePrereleases = true,
+        },
       }
 
       -- FORMATTING
