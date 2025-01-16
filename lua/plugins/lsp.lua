@@ -25,7 +25,7 @@ return {
       require("lspconfig").omnisharp.setup {
         capabilities = capabilities,
         cmd = {
-          "/nix/store/adpqa8140zcsnv3ngbvazqlxyn83c12c-omnisharp-roslyn-1.39.12/bin/OmniSharp",
+          vim.fn.exepath("OmniSharp"),
           "--languageserver",
           "--hostPID",
           tostring(pid),
