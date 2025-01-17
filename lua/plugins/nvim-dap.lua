@@ -34,6 +34,24 @@ return {
         end
       end
 
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = 8123,
+        executable = {
+          command = vim.fn.exepath("node"),
+        }
+      }
+      dap.configurations.javascript = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "launch - typescript",
+          -- program = "${file}",
+          -- cwd = "${workspaceFolder}",
+        },
+      }
+
       -- KEYMAPS
       vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = 'DAP continue' })
       vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end, { desc = 'DAP continue' })
