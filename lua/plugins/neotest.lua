@@ -31,6 +31,8 @@ return {
         },
       })
       vim.keymap.set('n', '<leader>tt', "<cmd>Neotest run<cr>", { desc = 'Neotest nearest test' })
+      vim.keymap.set('n', '<leader>to', "<cmd>Neotest output-panel<cr>", { desc = 'Neotest output' })
+      vim.keymap.set('n', '<leader>tS', "<cmd>Neotest summary<cr>", { desc = 'Neotest summary' })
       vim.keymap.set('n', '<leader>ts', "<cmd>lua require('neotest').run.stop()<cr>", { desc = 'Neotest test stop' })
       vim.keymap.set('n', '<leader>tf', "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
         { desc = 'Neotest test file' })

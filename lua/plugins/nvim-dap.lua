@@ -1,3 +1,11 @@
+local js_languages = {
+  "typescript",
+  "javascript",
+  "typescriptreact",
+  "javascriptreact",
+  "vue",
+}
+
 return {
   {
     'mfussenegger/nvim-dap',
@@ -5,6 +13,7 @@ return {
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio",
     },
 
     config = function()
@@ -37,18 +46,21 @@ return {
       dap.adapters["pwa-node"] = {
         type = "server",
         host = "localhost",
-        port = 8123,
+        port = "${port}",
         executable = {
-          command = vim.fn.exepath("node"),
+          command = "js-debug",
+          -- args = { vim.fn.exepath("js-debug"), "${port}" },
+          args = { "${port}", "localhost" },
         }
       }
-      dap.configurations.javascript = {
+      dap.configurations.typescript = {
         {
           type = "pwa-node",
           request = "launch",
           name = "launch - typescript",
-          -- program = "${file}",
-          -- cwd = "${workspaceFolder}",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          sourceMaps = false,
         },
       }
 
