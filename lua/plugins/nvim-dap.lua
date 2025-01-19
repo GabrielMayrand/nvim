@@ -32,10 +32,10 @@ return {
           dap.configurations[lang] = {
             {
               type = "netcoredbg",
-              name = "Launch file",
+              name = "launch - netcoredbg",
               request = "launch",
               program = function()
-                return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+                return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/Onyx./bin/Debug/net9.0/Onyx.", "file")
               end,
               cwd = "${workspaceFolder}",
             },
