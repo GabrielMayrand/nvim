@@ -14,6 +14,11 @@ return {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
+      "firefox-devtools/vscode-firefox-debug",
+      {
+        "firefox-devtools/vscode-firefox-debug",
+        build = "npm i && npm run build",
+      },
     },
 
     config = function()
@@ -62,6 +67,47 @@ return {
           cwd = "${workspaceFolder}",
           sourceMaps = false,
         },
+      }
+
+      dap.configurations.vue = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "launch - typescript",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          sourceMaps = false,
+        },
+      }
+
+      dap.adapters.firefox = {
+        type = 'executable',
+        command = 'node',
+        args = { os.getenv('HOME') .. '/.local/share/nvim/lazy/vscode-firefox-debug/dist/adapter.bundle.js' },
+      }
+
+      dap.configurations.typescript = {
+        {
+          name = 'Debug with Firefox',
+          type = 'firefox',
+          request = 'launch',
+          reAttach = true,
+          url = 'http://localhost:44355',
+          webRoot = '${workspaceFolder}',
+          firefoxExecutable = vim.fn.exepath("firefox")
+        }
+      }
+
+      dap.configurations.vue = {
+        {
+          name = 'Debug with Firefox',
+          type = 'firefox',
+          request = 'launch',
+          reAttach = true,
+          url = 'http://localhost:3000',
+          webRoot = '${workspaceFolder}',
+          firefoxExecutable = vim.fn.exepath("firefox")
+        }
       }
 
       -- KEYMAPS
