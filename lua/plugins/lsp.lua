@@ -49,6 +49,10 @@ return {
           },
         },
       }
+
+      require 'lspconfig'.jsonls.setup {
+        capabilities = capabilities,
+      }
       -- FORMATTING
       -- vim.api.nvim_create_autocmd('LspAttach', {
       --   callback = function(args)
