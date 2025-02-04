@@ -19,7 +19,11 @@ return {
 
       -- LSP
       require("lspconfig").lua_ls.setup {
-        capabilites = capabilities
+        capabilities = capabilities
+      }
+
+      require("lspconfig").nixd.setup {
+        capabilities = capabilities
       }
 
       require("lspconfig").omnisharp.setup {
@@ -35,7 +39,7 @@ return {
         },
       }
 
-      require 'lspconfig'.volar.setup {
+      require('lspconfig').volar.setup {
         capabilities = capabilities,
         filetypes = {
           'typescript',
@@ -53,6 +57,13 @@ return {
       require 'lspconfig'.jsonls.setup {
         capabilities = capabilities,
       }
+
+      -- require 'lspconfig'.rust_analyzer.setup {
+      --   capabilities = capabilities,
+      --   filetypes = { "rust" },
+      --   cmd = { "rust-analyzer" }
+      -- }
+
       -- FORMATTING
       -- vim.api.nvim_create_autocmd('LspAttach', {
       --   callback = function(args)
