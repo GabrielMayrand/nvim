@@ -19,6 +19,14 @@ cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim
 make clean && make
 ```
 
+If this step did not resolve the problem:
+
+```bash
+sudo rm -r ~/.local/share/nvim/lazy/telescope-fzf-native.nvim
+sudo rm -r ~/.local/share/nvim/lazy/telescope.nvim
+```
+
+
 ## BLINK :
 ### Problem Description
 
