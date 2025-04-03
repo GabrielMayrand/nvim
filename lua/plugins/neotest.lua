@@ -12,11 +12,14 @@ return {
     },
     opts = {
       discovery = {
-        enabled = false,
-        concurrent = 1,
+        enabled = true,
+        concurrent = 4,
       },
       running = {
         concurrent = true,
+      },
+      summary = {
+        animated = true,
       },
     },
     config = function()

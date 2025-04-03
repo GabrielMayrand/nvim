@@ -2,6 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      'Hoffs/omnisharp-extended-lsp.nvim',
       'saghen/blink.cmp',
       {
         "folke/lazydev.nvim",
@@ -37,6 +38,14 @@ return {
         Sdk = {
           IncludePrereleases = true,
         },
+        handlers = {
+          ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+          ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+          ["textDocument/references"] = require('omnisharp_extended').references_handler,
+          ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+        },
+        sdk_include_prereleases = true,
+        enable_editorconfig_support = true,
       }
 
       require('lspconfig').volar.setup {

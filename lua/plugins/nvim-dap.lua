@@ -23,7 +23,58 @@ return {
     },
 
     config = function()
-      local dap = require('dap')
+      local dap               = require('dap')
+
+      -- UNITY
+      local vstuc_path        =
+      '/nix/store/m9jilz3zkwawjwbllwnggzcdwis0869r-vscode-extension-VisualStudioToolsForUnity-vstuc-1.1.1/share/vscode/extensions/VisualStudioToolsForUnity.vstuc/bin'
+      dap.adapters.vstuc      = {
+        type = 'executable',
+        command = 'dotnet',
+        args = { vstuc_path .. 'UnityDebugAdapter.dll' },
+        name = 'Attach to Unity',
+      }
+      dap.configurations.cs   = {
+        {
+          type = 'vstuc',
+          request = 'attach',
+          name = 'Attach to Unity',
+          logFile = vim.fs.joinpath(vim.fn.stdpath('data')) .. '/vstuc.log',
+          projectPath = function()
+            local path = vim.fn.expand('%:p')
+            while true do
+              local new_path = vim.fn.fnamemodify(path, ':h')
+              if new_path == path then
+                return ''
+              end
+              path = new_path
+              local assets = vim.fn.glob(path .. '/Assets')
+              if assets ~= '' then
+                return path
+              end
+            end
+          end,
+          endPoint = function()
+            local system_obj = vim.system({ 'dotnet', vstuc_path .. 'UnityAttachProbe.dll' }, { text = true })
+            local probe_result = system_obj:wait(2000).stdout
+            if probe_result == nil or #probe_result == 0 then
+              print('No endpoint found (is unity running?)')
+              return ''
+            end
+            for json in vim.gsplit(probe_result, '\n') do
+              if json ~= '' then
+                local probe = vim.json.decode(json)
+                for _, p in pairs(probe) do
+                  if p.isBackground == false then
+                    return p.address .. ':' .. p.debuggerPort
+                  end
+                end
+              end
+            end
+            return ''
+          end
+        },
+      }
 
       -- DOTNET
       dap.adapters.netcoredbg = {
@@ -110,6 +161,8 @@ return {
           firefoxExecutable = vim.fn.exepath("firefox")
         }
       }
+
+
 
       -- KEYMAPS
       vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = 'DAP continue' })
