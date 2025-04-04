@@ -40,33 +40,14 @@ return {
       vim.keymap.set('n', '<leader>gS', builtin.git_stash, { desc = 'Telescope git stash' })
 
       -- LSP
-      -- vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = 'Telescope lsp references' })
-      -- vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions, { desc = 'Telescope lsp definitions' })
-      -- vim.keymap.set('n', '<leader>lD', builtin.lsp_type_definitions, { desc = 'Telescope lsp type definitions' })
-      -- vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { desc = 'Telescope lsp implementations' })
-      vim.keymap.set(
-        "n",
-        '<leader>lr',
-        function() require("omnisharp_extended").telescope_lsp_references(require("telescope.themes").get_ivy({ excludeDefinition = true })) end,
-        { noremap = true }
-      )
-      vim.keymap.set(
-        "n",
-        '<leader>ld',
-        require("omnisharp_extended").telescope_lsp_definition, { noremap = true }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>lD",
-        function() require("omnisharp_extended").telescope_lsp_type_definition() end,
-        { noremap = true }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>li",
-        require("omnisharp_extended").telescope_lsp_implementation,
-        { noremap = true }
-      )
+      vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Telescope lsp references' })
+      vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Telescope lsp definitions' })
+      vim.keymap.set('n', 'gD', builtin.lsp_type_definitions, { desc = 'Telescope lsp type definitions' })
+      vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = 'Telescope lsp implementations' })
+      vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = 'Telescope lsp references' })
+      vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions, { desc = 'Telescope lsp definitions' })
+      vim.keymap.set('n', '<leader>lD', builtin.lsp_type_definitions, { desc = 'Telescope lsp type definitions' })
+      vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { desc = 'Telescope lsp implementations' })
 
       -- NEOVIM CONFIG SEARCH
       vim.keymap.set('n', '<leader>nr', builtin.registers, { desc = 'Telescope registers' })
