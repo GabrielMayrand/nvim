@@ -174,6 +174,7 @@ return {
       vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end, { desc = 'DAP step into' })
       vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = 'DAP step out' })
       vim.keymap.set('n', '<Leader>dO', function() require('dap').step_out() end, { desc = 'DAP step out' })
+      vim.keymap.set('n', '<Leader>dt', function() require('dap').terminate() end, { desc = 'DAP terminate' })
       vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end,
         { desc = 'DAP toggle breakpoint' })
       vim.keymap.set('n', '<Leader>dp',
