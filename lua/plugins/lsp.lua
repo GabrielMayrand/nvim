@@ -26,8 +26,6 @@ return {
       require("lspconfig").nixd.setup {
         capabilities = capabilities
       }
-      local lspconfig = require 'lspconfig'
-      local configs = require 'lspconfig.configs'
 
       require("lspconfig").omnisharp.setup {
         capabilities = capabilities,
@@ -52,20 +50,20 @@ return {
         analyze_open_documents_only = false,
       }
 
-      require('lspconfig').volar.setup {
+      require 'lspconfig'.ts_ls.setup({
         capabilities = capabilities,
-        filetypes = {
-          'typescript',
-          'javascript',
-          'vue',
-        },
         init_options = {
-          vue = {
-            -- disable hybrid mode
-            hybridMode = false,
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = vim.fn.exepath("vue-language-server"),
+              languages = { "vue" },
+            },
           },
         },
-      }
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+      })
+
 
       require 'lspconfig'.jsonls.setup {
         capabilities = capabilities,
