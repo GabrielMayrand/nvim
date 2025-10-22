@@ -17,6 +17,7 @@ return {
       -- COMPLETION
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local pid = vim.fn.getpid()
+      local cwd = vim.fn.getcwd()
 
       -- LSP
       require("lspconfig").lua_ls.setup {
@@ -56,7 +57,7 @@ return {
           plugins = {
             {
               name = "@vue/typescript-plugin",
-              location = vim.fn.exepath("vue-language-server"),
+              location = cwd .. "/node_modules/@vue/language-server",
               languages = { "vue" },
             },
           },
